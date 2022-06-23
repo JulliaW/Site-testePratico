@@ -1,0 +1,90 @@
+body{
+    background-color: #2e354c;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.card{
+    background-color: #ffffff80;
+    padding: 70px;
+    border-radius: 1%;
+    box-shadow: 3px 3px 1px 0px #00000060;
+    width: 1000px;
+}
+
+.justify-center{
+    display: flex;
+    justify-content: center;
+}
+
+#listaRegistros{ display: none; }
+        #cadastroRegistro{
+            display: none;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        body[page=lista] #listaRegistros{ display: block; }
+        body[page=cadastro] #cadastroRegistro{ display: flex; }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th,
+        table td{
+            font-size: 14px;
+            padding: 10px 15px;
+            border: solid 1px #ccc;
+        }
+
+        button{
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #ffc107;
+            color: black;
+            margin: 3px;
+            padding: 10px 15px;
+        }
+        button.preto{
+            background-color: black;
+            color: #ffc107;
+        }
+        button.vermelho{
+            background-color: #ff4040;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+
+        input{
+            border: solid 1px #ccc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .label>div{
+            display: flex;
+        }
+        .label>div>input{
+            flex: 1;
+        }
+
+        
