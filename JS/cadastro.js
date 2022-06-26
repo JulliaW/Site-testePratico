@@ -1,6 +1,4 @@
-const KEY_BD = '@produtos'
-
-/*const response = {
+const response = {
     products: [
         {
             "id": "1",
@@ -8,7 +6,8 @@ const KEY_BD = '@produtos'
             "descricao": "Produto voltado para teste....",
             "quantidade": "50",
             "preco": "5.0",
-            "lote": "AC32"
+            "lote": "AC32",
+            "imagem" : "/imagens/produto1"
         },
         {
             "id": "1",
@@ -16,7 +15,8 @@ const KEY_BD = '@produtos'
             "descricao": "Produto voltado para teste....",
             "quantidade": "70",
             "preco": "15.0",
-            "lote": "BA21"
+            "lote": "BA21",
+            "imagem" : "/imagens/produto2"
         },
         {
             "id": "1",
@@ -24,16 +24,17 @@ const KEY_BD = '@produtos'
             "descricao": "Produto voltado para teste....",
             "quantidade": "5",
             "preco": "10.0",
-            "lote": "tr54"
+            "lote": "tr54",
+            "imagem" : "/imagens/produto3"
         }
     ]
-}*/
+}
 
-/*construirLinhasDaTabela = function() {
-    let table = document.querySelector("");
+construirLinhasDaTabela = function() {
+    let tableLista = document.querySelector("");
 
     for(let i=0;i<response.products.length;i++){
-        let novaLinha = document.createElement("li");
+        let novaLinha = document.createElement("tr");
 
         let idTd = document.createElement("td")
         let nomeTd = document.createElement("td")
@@ -41,37 +42,29 @@ const KEY_BD = '@produtos'
         let quantidadeTd = document.createElement("td")
         let precoTd = document.createElement("td")
         let loteTd = document.createElement("td")
+        let imagemTd = document.createElement("td")
 
         idTd.textContent = response.products[i].id;
+        nomeTd.textContent = response.products[i].nome;
+        descricaoTd.textContent = response.products[i].descricao;
+        quantidadeTd.textContent = response.products[i].quantidade;
+        precoTd.textContent = response.products[i].preco;
+        loteTd.textContent = response.products[i].lote;
+        imagemTd.textContent = response.products[i].imagem;
 
         novaLinha.appendChild(tdId);
+        novaLinha.appendChild(nomeTd);
+        novaLinha.appendChild(descricaoTd);
+        novaLinha.appendChild(quantidadeTd);
+        novaLinha.appendChild(precoTd);
+        novaLinha.appendChild(loteTd);
+        novaLinha.appendChild(imagemTd);
         
-        table.appendChild(novaLinha);
+        tableLista.appendChild(novaLinha);
     }
-}*/
-
-
-var listaRegistros = {
-    ultimoIdGerado:0,
-    produtos:[]
 }
-
 
 var FILTRO = ''
-
-
-function gravarBD(){
-    localStorage.setItem(KEY_BD, JSON.stringify(listaRegistros) )
-}
-
-function lerBD(){
-    const data = localStorage.getItem(KEY_BD)
-    if(data){
-        listaRegistros = JSON.parse(data)
-    }
-    desenhar()
-}
-
 
 function pesquisar(value){
     FILTRO = value;
@@ -82,7 +75,7 @@ function pesquisar(value){
 function desenhar(){
     const tbody = document.getElementById('listaRegistrosBody')
     if(tbody){
-        var data = listaRegistros.produtos;
+        var data = produto.produtos;
         if(FILTRO.trim()){
             const expReg = eval(`/${FILTRO.trim().replace(/[^\d\w]+/g,'.*')}/i`)
             data = data.filter( produto => {
@@ -101,6 +94,7 @@ function desenhar(){
                         <td>${produto.quantidade}</td>
                         <td>${produto.preco}</td>
                         <td>${produto.lote}</td>
+                        <td>${produto.imagem}</td>
                         <td>
                             <button onclick='vizualizar("cadastro",false,${produto.id})'>Editar</button>
                             <button class='vermelho' onclick='perguntarSeDeleta(${produto.id})'>Excluir</button>
@@ -111,118 +105,53 @@ function desenhar(){
     }
 }
 
-let inputId = document.querySelector("#id");
 
-function insertProduto(nome, descricao, quantidade, preco, lote){
+function insertProduto(nome, descricao, quantidade, preco, lote, imagem){
     
-    /*
     obj = {
-        "id": inputId.textContent
-        "nome": inputNome.textContent
-        "descricao": inputDescricao.textContent
-        "quantidade": inputQuantidade.textContent
-        "preco": inputPreco.textContent
-        "lote": inputLote.textContent
+        "id": inputId.textContent,
+        "nome": inputNome.textContent,
+        "descricao": inputDescricao.textContent,
+        "quantidade": inputQuantidade.textContent,
+        "preco": inputPreco.textContent,
+        "lote": inputLote.textContent,
+        "imagem" : inputImagem.imageContent
     }
 
     //response = fetch('url', () => { method: 'POST', body: obj } ).then(r => JSON.parse(r))
 
     response.products.push(obj);
 
-    construirLinhasDaTabela(response);*/
-    
-    const id = listaRegistros.ultimoIdGerado + 1;
-    listaRegistros.ultimoIdGerado = id;
-    listaRegistros.produtos.push({
-        id, nome, descricao, quantidade, preco, lote
-    })
-    gravarBD()
-    desenhar()
-    vizualizar('lista')
-}
-
-function editProduto(id, nome, descricao, quantidade, preco, lote){
-    var produto = listaRegistros.produtos.find( produto => produto.id == id )
-    produto.nome = nome;
-    produto.descricao = descricao;
-    produto.quantidade = quantidade;
-    produto.preco = preco;
-    produto.lote = lote;
-    gravarBD()
-    desenhar()
-    vizualizar('lista')
-}
-
-function deleteProduto(id){
-    listaRegistros.produtos = listaRegistros.produtos.filter( produto => {
-        return produto.id != id
-    } )
-    gravarBD()
-    desenhar()
-}
-
-function perguntarSeDeleta(id){
-    if(confirm('Tem certeza que deseja deletar o produto '+id +'?')){
-        deleteProduto(id)
-    }
-}
-
-
-function limparEdicao(){
-    document.getElementById('nome').value = ''
-    document.getElementById('descricao').value = ''
-    document.getElementById('quantidade').value = ''
-    document.getElementById('preco').value = ''
-    document.getElementById('lote').value = ''
+    construirLinhasDaTabela(response);
 }
 
 function vizualizar(pagina, novo=false, id=null){
     document.body.setAttribute('page',pagina)
-    if(pagina == 'cadastro'){
-        if(novo) limparEdicao()
-        if(id){
-            const produto = listaRegistros.produtos.find( produto => produto.id == id )
-            if(produto){
-                document.getElementById('id').value = produto.id
-                document.getElementById('nome').value = produto.nome
-                document.getElementById('descricao').value = produto.descricao
-                document.getElementById('quantidade').value = produto.quantidade
-                document.getElementById('preco').value = produto.preco
-                document.getElementById('lote').value = produto.lote
-            }
-        }
-        document.getElementById('nome').focus()
-    }
 }
-
-
-
-function submeter(e){
-    e.preventDefault()
-    const data = {
-        id: document.getElementById('id').value,
-        nome: document.getElementById('nome').value,
-        descricao: document.getElementById('descricao').value,
-        quantidade: document.getElementById('quantidade').value,
-        preco: document.getElementById('preco').value, 
-        lote: document.getElementById('lote').value,
-    }
-    if(data.id){
-        editProduto(data.id, data.nome, data.descricao, data.quantidade, data.preco, data.lote)
-    }else{
-        insertProduto( data.nome, data.descricao, data.quantidade, data.preco, data.lote )
-    }
-}
-
 
 window.addEventListener('load', () => {
-    lerBD()
-    document.getElementById('cadastroRegistro').addEventListener('submit', submeter)
-    document.getElementById('inputPesquisa').addEventListener('keyup', e => {
-        pesquisar(e.target.value)
-    })
 
     // response = fetch('url', () => { method: 'GET'} ).then(r => JSON.parse(r));
 
-    //construirLinhasDaTabela(response)
+    construirLinhasDaTabela(response)
 })
+
+function openModal(mn) {
+    let modal = document.getElementById(mn);
+
+    if (typeof modal == 'undefined' || modal === null)
+        return;
+
+    modal.style.display = 'Block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(mn) {
+    let modal = document.getElementById(mn);
+
+    if (typeof modal == 'undefined' || modal === null)
+        return;
+
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}

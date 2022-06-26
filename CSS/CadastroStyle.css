@@ -1,21 +1,21 @@
-body{
+body {
     background-color: #2e354c;
 }
 
-h1{
+h1 {
     text-align: center;
     margin-bottom: 20px;
     color: black;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 100px;
 }
 
-.card{
+.card {
     background-color: #ffffff80;
     padding: 70px;
     border-radius: 1%;
@@ -23,68 +23,165 @@ h1{
     width: 1000px;
 }
 
-.justify-center{
+.justify-center {
     display: flex;
     justify-content: center;
 }
 
-#listaRegistros{ display: none; }
-        #cadastroRegistro{
-            display: none;
-            flex-direction: column;
-            gap: 30px;
-        }
+#listaRegistros {
+    display: none;
+}
 
-        body[page=lista] #listaRegistros{ display: block; }
-        body[page=cadastro] #cadastroRegistro{ display: flex; }
+#cadastroRegistro {
+    display: none;
+    flex-direction: column;
+    gap: 30px;
+}
 
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-        }
+body[page=lista] #listaRegistros {
+    display: block;
+}
 
-        table{
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table th,
-        table td{
-            font-size: 14px;
-            padding: 10px 15px;
-            border: solid 1px #ccc;
-        }
+body[page=cadastro] #cadastroRegistro {
+    display: flex;
+}
 
-        button{
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #ffc107;
-            color: black;
-            margin: 3px;
-            padding: 10px 15px;
-        }
-        button.preto{
-            background-color: black;
-            color: #ffc107;
-        }
-        button.vermelho{
-            background-color: #ff4040;
-        }
-        button:hover{
-            opacity: 0.8;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
 
-        input{
-            border: solid 1px #ccc;
-            border-radius: 4px;
-            padding: 10px;
-        }
+.tableLista {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        .label>div{
-            display: flex;
-        }
-        .label>div>input{
-            flex: 1;
-        }
+.tableLista th,
+.tableLista td {
+    font-size: 14px;
+    padding: 10px 15px;
+    border: solid 1px #ccc;
+}
 
-        
+.tableAjuda{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableAjuda th,
+.tableAjuda td {
+    font-size: 14px;
+    padding: 10px 15px;
+    border: solid 1px #ccc;
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #ffc107;
+    color: black;
+    margin: 3px;
+    padding: 10px 15px;
+}
+
+button.preto {
+    background-color: black;
+    color: #ffc107;
+}
+
+button.vermelho {
+    background-color: #ff4040;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+input {
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.label>div {
+    display: flex;
+}
+
+.label>div>input {
+    flex: 1;
+}
+
+
+p {
+    text-align: justify;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 900px;
+    background-color: #eee;
+    padding: 10px;
+}
+
+.btnModal {
+    background-color: #ffc107;
+    padding: 5px 10px 5px 10px;
+    border: 2px solid #c79706;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 5px;
+    color: #FFF;
+}
+
+.btnModal:hover {
+    background-color: #c79706
+}
+
+.btnModal:active {
+    background-color: #f8da81;;
+    color: #ffc107;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.modal-content {
+    margin: 0 auto;
+    margin-top: 3%;
+    max-width: 1000px;
+    background-color: #eee;
+    padding: 0;
+    box-shadow: 0 0 2px #fff;
+}
+
+.modal-header h1 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.modal-body,
+.modal-footer {
+    padding: 10px;
+}
+
+.modal-header {
+    background-color: #ccc;
+    padding: 1px;
+}
+
+.modal-footer {
+    background-color: #ccc;
+}
+
+.justify-right{
+    display: flex;
+    justify-content: right;
+}
