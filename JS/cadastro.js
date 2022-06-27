@@ -131,6 +131,10 @@ function vizualizar(pagina, novo=false, id=null){
     document.body.setAttribute('page',pagina)
 }
 
+/*function inserirImagem{
+    //abrir página para inserir imagem   
+}*/
+
 window.addEventListener('load', () => {
 
     if(acessoLiberado == true)
