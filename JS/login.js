@@ -38,9 +38,10 @@ btnLogin.addEventListener('click', () => {
 
     window.location = '/Index.html'
     //Redirecionar para index.
+    acessoLiberado = true
   } else {
     alert("Acesso não liberado.")
-
+    acessoLiberado = false
   }
 
 });

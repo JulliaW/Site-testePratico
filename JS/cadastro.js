@@ -1,3 +1,5 @@
+let acessoLiberado = false;
+
 const response = {
     products: [
         {
@@ -131,9 +133,17 @@ function vizualizar(pagina, novo=false, id=null){
 
 window.addEventListener('load', () => {
 
-    // response = fetch('url', () => { method: 'GET'} ).then(r => JSON.parse(r));
-
-    construirLinhasDaTabela(response)
+    if(acessoLiberado == true)
+    {
+        // response = fetch('url', () => { method: 'GET'} ).then(r => JSON.parse(r));
+        construirLinhasDaTabela(response)
+    }
+    else
+    {
+        window.location = '/Login.html'
+        alert("Realize o login para ter acesso ao sistema.")
+    }
+    
 })
 
 function openModal(mn) {
